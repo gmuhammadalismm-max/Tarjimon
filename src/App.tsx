@@ -625,20 +625,55 @@ export default function App() {
       <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col space-y-6">
         
         {/* Title and credits section */}
-        <div className="text-center md:text-left flex flex-col md:flex-row md:items-end justify-between border-b border-slate-200 pb-5">
-          <div className="space-y-1">
-            <h1 className="text-3xl font-extrabold font-display tracking-tight text-slate-900 flex items-center space-x-2 justify-center md:justify-start">
-              <span>Tarjimon AI</span>
-            </h1>
-            <p className="text-xs text-slate-500">
-              powered by <a href="https://muhammadai.uz" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors duration-200">muhammadai.uz</a>
-            </p>
-          </div>
-          <div className="mt-2 md:mt-0 flex items-center justify-center space-x-2">
-            <span className="text-xs font-medium text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full inline-flex items-center space-x-1.5">
-              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-ping"></span>
-              <span>Gemini Pro Active</span>
+        <div className="relative overflow-hidden bg-white border border-slate-200/80 rounded-2xl p-6 md:p-8 shadow-sm flex flex-col md:flex-row items-center md:items-center justify-between gap-6">
+          {/* Ambient light effects inside the container */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50/40 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20 -z-10" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-50/30 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20 -z-10" />
+
+          <div className="flex flex-col items-center md:items-start space-y-3 relative z-10 w-full md:w-auto">
+            <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-indigo-50 text-indigo-700 border border-indigo-100 shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 animate-pulse text-indigo-600" />
+              <span>Professional Sun'iy Intellekt Tarjimoni</span>
             </span>
+            
+            <div className="flex flex-col sm:flex-row items-center sm:space-x-3 space-y-1 sm:space-y-0 text-center md:text-left">
+              <h1 className="text-3xl sm:text-4xl font-black font-display tracking-tight text-slate-900 flex items-center space-x-2.5">
+                <span className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 bg-clip-text text-transparent">Sardor Tarjimon</span>
+              </h1>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-black tracking-widest uppercase bg-gradient-to-r from-indigo-600 to-indigo-800 text-white shadow-sm ring-1 ring-white/10">
+                PRO
+              </span>
+            </div>
+
+            <p className="text-sm text-slate-500 max-w-xl text-center md:text-left font-medium">
+              Har bir soha uchun maxsus moslashuvchan lisoniy model va mukammal kontekstual o'zbekcha tarjima tizimi.
+            </p>
+
+            <div className="pt-1 text-xs text-slate-400 font-medium">
+              Hamkorlikda yaratildi: <a href="https://muhammadai.uz" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-800 underline font-bold transition-colors duration-200">muhammadai.uz</a>
+            </div>
+          </div>
+
+          {/* Right Status Badge Area */}
+          <div className="flex flex-wrap items-center justify-center gap-3 relative z-10 w-full md:w-auto md:self-center">
+            <div className="bg-slate-50 border border-slate-100 px-4 py-2.5 rounded-xl flex items-center space-x-3 shadow-2xs">
+              <div className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">TIZIM HOLATI</span>
+                <span className="text-xs font-extrabold text-slate-700">Online</span>
+              </div>
+            </div>
+
+            <div className="bg-slate-50 border border-slate-100 px-4 py-2.5 rounded-xl flex items-center space-x-3 shadow-2xs">
+              <Cpu className="w-4 h-4 text-indigo-600" />
+              <div className="flex flex-col text-left">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">TEXNOLOGIYA</span>
+                <span className="text-xs font-extrabold text-slate-700">Gemini LLM Super-Core</span>
+              </div>
+            </div>
           </div>
         </div>
         

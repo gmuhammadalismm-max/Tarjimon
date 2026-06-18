@@ -1,6 +1,6 @@
 {
-  "name": "O'zbek Tili Professional Tarjimoni",
-  "description": "Hujjatlar va matnlarni badiiy, ilmiy yoki rasmiy uslubda o'zbek tiliga yuqori sifatda tarjima qiluvchi professional tizim.",
+  "name": "Sardor Tarjimon PRO",
+  "description": "Hujjatlar va matnlarni badiiy, ilmiy yoki rasmiy uslubda o'zbek tiliga yuqori sifatda tarjima qiluvchi professional va mukammal tizim.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
