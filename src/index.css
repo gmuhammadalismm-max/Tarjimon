@@ -7,29 +7,47 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
-/* Custom Scrollbar Styles */
+/* App-wide custom dark theme background & scrollbars */
+body {
+  background-color: #161316;
+  color: #FFFFFF;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: rgba(22, 19, 22, 0.5);
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
+  background: #453027;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #FF6D29;
 }
 
-/* Highlight translation effects */
+/* Premium radial gradient glow effects based on requested picture */
+.glowing-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle 500px at 15% 45%, rgba(255, 109, 41, 0.12), transparent 80%),
+              radial-gradient(circle 600px at 85% 75%, rgba(69, 48, 39, 0.35), transparent 85%),
+              #161316;
+  z-index: -20;
+}
+
+/* Glowing amber accent pulse animation */
 @keyframes pulseGlow {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(1.05); }
 }
 
 .animate-pulse-glow {
-  animation: pulseGlow 1.5s infinite ease-in-out;
+  animation: pulseGlow 4s infinite ease-in-out;
 }
 

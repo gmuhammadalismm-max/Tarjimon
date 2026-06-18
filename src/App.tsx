@@ -112,7 +112,7 @@ export default function App() {
   const [translatedText, setTranslatedText] = useState("");
   const [selectedStyle, setSelectedStyle] = useState<StyleType>("Rasmiy");
   const [customInstructions, setCustomInstructions] = useState("");
-  const [selectedModel, setSelectedModel] = useState<string>("gemini-3.5-flash");
+  const [selectedModel, setSelectedModel] = useState<string>("gemini-3.1-flash-lite");
   
   // App states
   const [isLoading, setIsLoading] = useState(false);
@@ -212,40 +212,40 @@ export default function App() {
     switch (selectedStyle) {
       case "Badiiy":
         return {
-          primary: "bg-amber-600 hover:bg-amber-700 text-white",
-          accent: "text-amber-600",
-          bgLight: "bg-amber-50/50",
-          border: "border-amber-200 focus:border-amber-500 focus:ring-amber-200",
-          accentBg: "bg-amber-100/70 text-amber-800",
-          gradient: "from-amber-600 to-orange-500",
-          gradientLight: "from-amber-50 to-orange-50/30",
-          tagBg: "bg-amber-50 border-amber-200 text-amber-800",
-          btnOutline: "border-amber-200 text-amber-700 hover:bg-amber-50"
+          primary: "bg-[#FF6D29] hover:bg-[#e0581b] text-white",
+          accent: "text-[#FF6D29]",
+          bgLight: "bg-[#453027]/40",
+          border: "border-[#453027]/80 focus:border-[#FF6D29] focus:ring-[#FF6D29]/20",
+          accentBg: "bg-[#453027] text-[#FF6D29]",
+          gradient: "from-[#FF6D29] to-[#453027]",
+          gradientLight: "from-[#453027]/10 to-[#161316]/80",
+          tagBg: "bg-[#453027]/60 border-[#453027]/80 text-[#BABABA]",
+          btnOutline: "border-[#453027]/80 text-[#BABABA] hover:bg-[#453027]/30"
         };
       case "Ilmiy":
         return {
-          primary: "bg-sky-600 hover:bg-sky-700 text-white",
-          accent: "text-sky-600",
-          bgLight: "bg-sky-50/50",
-          border: "border-sky-200 focus:border-sky-500 focus:ring-sky-200",
-          accentBg: "bg-sky-100/70 text-sky-800",
-          gradient: "from-sky-600 to-indigo-600",
-          gradientLight: "from-sky-50 to-indigo-50/30",
-          tagBg: "bg-sky-50 border-sky-200 text-sky-800",
-          btnOutline: "border-sky-200 text-sky-700 hover:bg-sky-50"
+          primary: "bg-[#FF6D29] hover:bg-[#e0581b] text-white",
+          accent: "text-[#FF6D29]",
+          bgLight: "bg-[#453027]/40",
+          border: "border-[#453027]/80 focus:border-[#FF6D29] focus:ring-[#FF6D29]/20",
+          accentBg: "bg-[#453027] text-[#FF6D29]",
+          gradient: "from-[#FF6D29] to-[#453027]",
+          gradientLight: "from-[#453027]/10 to-[#161316]/80",
+          tagBg: "bg-[#453027]/60 border-[#453027]/80 text-[#BABABA]",
+          btnOutline: "border-[#453027]/80 text-[#BABABA] hover:bg-[#453027]/30"
         };
       case "Rasmiy":
       default:
         return {
-          primary: "bg-emerald-700 hover:bg-emerald-800 text-white",
-          accent: "text-emerald-700",
-          bgLight: "bg-emerald-50/50",
-          border: "border-emerald-200 focus:border-emerald-500 focus:ring-emerald-200",
-          accentBg: "bg-emerald-100/70 text-emerald-800",
-          gradient: "from-emerald-700 to-teal-600",
-          gradientLight: "from-emerald-50 to-teal-50/30",
-          tagBg: "bg-emerald-50 border-emerald-200 text-emerald-800",
-          btnOutline: "border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+          primary: "bg-[#FF6D29] hover:bg-[#e0581b] text-white",
+          accent: "text-[#FF6D29]",
+          bgLight: "bg-[#453027]/40",
+          border: "border-[#453027]/80 focus:border-[#FF6D29] focus:ring-[#FF6D29]/20",
+          accentBg: "bg-[#453027] text-[#FF6D29]",
+          gradient: "from-[#FF6D29] to-[#453027]",
+          gradientLight: "from-[#453027]/10 to-[#161316]/80",
+          tagBg: "bg-[#453027]/60 border-[#453027]/80 text-[#BABABA]",
+          btnOutline: "border-[#453027]/80 text-[#BABABA] hover:bg-[#453027]/30"
         };
     }
   };
@@ -616,278 +616,183 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans transition-colors duration-300">
+    <div className="min-h-screen bg-[#161316] text-white flex flex-col font-sans relative overflow-x-hidden selection:bg-[#FF6D29]/30 selection:text-[#FF6D29]">
       
-      {/* Visual background elements */}
-      <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-slate-100/50 to-transparent pointer-events-none -z-10" />
+      {/* Premium Visual Background Glowing elements */}
+      <div className="glowing-bg" />
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#FF6D29] opacity-10 blur-[150px] pointer-events-none animate-pulse-glow" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[#453027] opacity-40 blur-[150px] pointer-events-none" />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col space-y-6 relative z-10">
         
-        {/* Title and credits section */}
-        <div className="relative overflow-hidden bg-white border border-slate-200/80 rounded-2xl p-6 md:p-8 shadow-sm flex flex-col md:flex-row items-center md:items-center justify-between gap-6">
-          {/* Ambient light effects inside the container */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50/40 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20 -z-10" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-50/30 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20 -z-10" />
-
-          <div className="flex flex-col items-center md:items-start space-y-3 relative z-10 w-full md:w-auto">
-            <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-indigo-50 text-indigo-700 border border-indigo-100 shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 animate-pulse text-indigo-600" />
-              <span>Professional Sun'iy Intellekt Tarjimoni</span>
-            </span>
-            
-            <div className="flex flex-col sm:flex-row items-center sm:space-x-3 space-y-1 sm:space-y-0 text-center md:text-left">
-              <h1 className="text-3xl sm:text-4xl font-black font-display tracking-tight text-slate-900 flex items-center space-x-2.5">
-                <span className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 bg-clip-text text-transparent">Sardor Tarjimon</span>
-              </h1>
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-black tracking-widest uppercase bg-gradient-to-r from-indigo-600 to-indigo-800 text-white shadow-sm ring-1 ring-white/10">
-                PRO
-              </span>
-            </div>
-
-            <p className="text-sm text-slate-500 max-w-xl text-center md:text-left font-medium">
-              Har bir soha uchun maxsus moslashuvchan lisoniy model va mukammal kontekstual o'zbekcha tarjima tizimi.
-            </p>
-
-            <div className="pt-1 text-xs text-slate-400 font-medium">
-              Hamkorlikda yaratildi: <a href="https://muhammadai.uz" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-800 underline font-bold transition-colors duration-200">muhammadai.uz</a>
-            </div>
+        {/* Modern Minimalist Top Bar / Header */}
+        <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between py-6 border-b border-[#453027]/40">
+          <div className="flex flex-col">
+            <span className="text-[11px] font-sans font-medium tracking-[0.3em] text-[#FF6D29] uppercase">Professional Tarjima Tizimi</span>
+            <h1 className="text-3xl font-extrabold tracking-tight text-white font-display mt-1 flex items-center gap-2">
+              sardor<span className="font-extralight text-[#BABABA]">tarjimon</span>
+              <span className="text-[10px] uppercase tracking-widest font-mono border border-[#FF6D29]/30 text-[#FF6D29] bg-[#FF6D29]/10 px-2.5 py-0.5 rounded-full">pro</span>
+            </h1>
           </div>
+          <div className="flex items-center gap-3 mt-4 sm:mt-0">
+            {/* History Trigger Button */}
+            <button
+              id="btn-toggle-history-sidebar"
+              type="button"
+              onClick={() => setIsHistoryOpen(!isHistoryOpen)}
+              className="px-4 py-2 border border-[#453027] hover:border-[#FF6D29] hover:text-[#FF6D29] rounded-full text-xs font-semibold tracking-wider transition-all bg-[#1c191c] text-white flex items-center gap-2 shadow-sm cursor-pointer"
+            >
+              <History className="w-3.5 h-3.5 text-[#FF6D29]" />
+              <span>Tarix ({historyList.length})</span>
+            </button>
 
-          {/* Right Status Badge Area */}
-          <div className="flex flex-wrap items-center justify-center gap-3 relative z-10 w-full md:w-auto md:self-center">
-            <div className="bg-slate-50 border border-slate-100 px-4 py-2.5 rounded-xl flex items-center space-x-3 shadow-2xs">
-              <div className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-              </div>
-              <div className="flex flex-col text-left">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">TIZIM HOLATI</span>
-                <span className="text-xs font-extrabold text-slate-700">Online</span>
-              </div>
-            </div>
-
-            <div className="bg-slate-50 border border-slate-100 px-4 py-2.5 rounded-xl flex items-center space-x-3 shadow-2xs">
-              <Cpu className="w-4 h-4 text-indigo-600" />
-              <div className="flex flex-col text-left">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">TEXNOLOGIYA</span>
-                <span className="text-xs font-extrabold text-slate-700">Gemini LLM Super-Core</span>
-              </div>
-            </div>
+            <a 
+              href="https://muhammadai.uz" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="px-4 py-2 border border-[#453027] hover:border-[#FF6D29] hover:text-[#FF6D29] rounded-full text-xs transition-all bg-[#161316]/50 shadow-sm font-semibold tracking-wider text-[#BABABA]"
+            >
+              muhammadai.uz
+            </a>
           </div>
-        </div>
-        
-        {/* Style selection cards (Interactive, premium design) */}
-        <section className="print:hidden">
-          <div className="flex flex-col space-y-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center space-x-2">
-                <Settings className="w-3.5 h-3.5" />
-                <span>Birinchi Qadam: Matn tarjima uslubini tanlang</span>
-              </h2>
-              <div className="text-xs text-slate-400 flex items-center space-x-1">
-                <HelpCircle className="w-3" />
-                <span>Har bir uslub uchun alohida lisoniy qoidalar qo'llaniladi</span>
-              </div>
-            </div>
+        </header>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              
-              {/* Rasmiy Style selector */}
-              <button
-                id="btn-style-rasmiy"
-                type="button"
-                onClick={() => setSelectedStyle("Rasmiy")}
-                className={`relative p-4 rounded-xl text-left border transition-all flex flex-col justify-between ${
-                  selectedStyle === "Rasmiy"
-                    ? "bg-emerald-50/60 border-emerald-500 ring-2 ring-emerald-500/10 shadow-sm"
-                    : "bg-white border-slate-200 hover:border-slate-300 hover:shadow-sm"
-                }`}
+        {/* History Drawer Sidebar Overlay */}
+        <AnimatePresence>
+          {isHistoryOpen && (
+            <>
+              {/* Overlay Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.5 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsHistoryOpen(false)}
+                className="fixed inset-0 bg-black z-40"
+              />
+              {/* Sidebar content */}
+              <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="fixed right-0 top-0 bottom-0 w-full sm:w-[400px] bg-[#1c191c] border-l border-[#453027] z-50 p-6 shadow-2xl flex flex-col"
               >
-                <div className="flex items-center space-x-3 mb-2">
-                  <div className={`p-2 rounded-lg ${selectedStyle === "Rasmiy" ? "bg-emerald-600 text-white" : "bg-slate-100 text-slate-500"}`}>
-                    <Briefcase className="w-5 h-5" />
+                <div className="flex items-center justify-between border-b border-[#453027]/40 pb-4 mb-4">
+                  <div className="flex items-center gap-2">
+                    <History className="w-5 h-5 text-[#FF6D29]" />
+                    <h3 className="font-bold text-white text-md">Tarjimalar Tarixi</h3>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-800 text-sm">Rasmiy / Ish yuritish</h3>
-                    <span className="text-[10px] text-slate-400 font-medium">Shartnoma, Qonuniyat, Biznes</span>
-                  </div>
+                  <button
+                    onClick={() => setIsHistoryOpen(false)}
+                    className="text-[#BABABA] hover:text-white text-xs px-2.5 py-1 rounded-md border border-[#453027]/40 cursor-pointer"
+                  >
+                    Yopish
+                  </button>
                 </div>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  Hujjatlar va diplomatik aloqalarga mos qat'iy mantiqiy uslub. Normativ va huquqiy atamalardan foydalaniladi.
-                </p>
-                {selectedStyle === "Rasmiy" && (
-                  <span className="absolute top-3 right-3 flex h-2 w-2 rounded-full bg-emerald-500" />
+
+                <div className="flex-1 overflow-y-auto space-y-3 pr-1">
+                  {historyList.length === 0 ? (
+                    <div className="text-center py-12 text-[#BABABA]/40 text-xs">
+                      Hozircha saqlangan tarjimalar mavjud emas.<br/>Tizimda o'girmalar qilinganda bu yerga avtomatik qo'shiladi.
+                    </div>
+                  ) : (
+                    historyList.map((item) => (
+                      <div
+                        key={item.id}
+                        onClick={() => handleLoadHistory(item)}
+                        className="p-3.5 rounded-xl border border-[#453027]/40 hover:border-[#FF6D29]/40 bg-[#161316]/60 cursor-pointer transition-all hover:bg-[#161316] group relative flex flex-col space-y-1.5 text-left"
+                      >
+                        <div className="flex items-center justify-between text-[9px] font-mono text-[#BABABA]/40">
+                          <span>{item.model?.replace("gemini-", "").toUpperCase() || "GEMINI"} • {item.style.toUpperCase()}</span>
+                          <span>{new Date(item.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+                        </div>
+                        <p className="text-xs text-[#BABABA] line-clamp-2 pr-6">{item.sourceText}</p>
+                        <p className="text-xs text-[#FF6D29] line-clamp-2 pr-6 font-medium">{item.translatedText}</p>
+                        <button
+                          onClick={(e) => handleDeleteHistoryItem(item.id, e)}
+                          className="absolute right-3 top-3 text-[#BABABA]/30 hover:text-red-400 opacity-0 group-hover:opacity-100 p-1 rounded-md transition-all duration-200 cursor-pointer"
+                          title="Tarixdan o'chirish"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ))
+                  )}
+                </div>
+
+                {historyList.length > 0 && (
+                  <div className="border-t border-[#453027]/40 pt-4 mt-4">
+                    <button
+                      id="btn-clear-history-action"
+                      onClick={handleClearHistory}
+                      className="w-full py-2.5 border border-red-500/20 hover:border-red-500/50 text-red-400 hover:bg-red-500/5 rounded-xl text-xs font-semibold tracking-wide transition-all cursor-pointer"
+                    >
+                      Barcha tarixni tozalash
+                    </button>
+                  </div>
                 )}
-              </button>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
 
-              {/* Ilmiy Style selector */}
-              <button
-                id="btn-style-ilmiy"
-                type="button"
-                onClick={() => setSelectedStyle("Ilmiy")}
-                className={`relative p-4 rounded-xl text-left border transition-all flex flex-col justify-between ${
-                  selectedStyle === "Ilmiy"
-                    ? "bg-sky-50/60 border-sky-500 ring-2 ring-sky-500/10 shadow-sm"
-                    : "bg-white border-slate-200 hover:border-slate-300 hover:shadow-sm"
-                }`}
-              >
-                <div className="flex items-center space-x-3 mb-2">
-                  <div className={`p-2 rounded-lg ${selectedStyle === "Ilmiy" ? "bg-sky-600 text-white" : "bg-slate-100 text-slate-500"}`}>
-                    <Cpu className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-800 text-sm">Ilmiy / Akademik</h3>
-                    <span className="text-[10px] text-slate-400 font-medium">Maqola, Texnika, Matematika</span>
-                  </div>
-                </div>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  Soha atamalari (IT, fizika, tibbiyot) rasmiy va muqobil variantiga to'liq o'giriladi, formulalar saqlanadi.
-                </p>
-                {selectedStyle === "Ilmiy" && (
-                  <span className="absolute top-3 right-3 flex h-2 w-2 rounded-full bg-sky-500" />
-                )}
-              </button>
-
-              {/* Badiiy Style selector */}
-              <button
-                id="btn-style-badiiy"
-                type="button"
-                onClick={() => setSelectedStyle("Badiiy")}
-                className={`relative p-4 rounded-xl text-left border transition-all flex flex-col justify-between ${
-                  selectedStyle === "Badiiy"
-                    ? "bg-amber-50/60 border-amber-500 ring-2 ring-amber-500/10 shadow-sm"
-                    : "bg-white border-slate-200 hover:border-slate-300 hover:shadow-sm"
-                }`}
-              >
-                <div className="flex items-center space-x-3 mb-2">
-                  <div className={`p-2 rounded-lg ${selectedStyle === "Badiiy" ? "bg-amber-600 text-white" : "bg-slate-100 text-slate-500"}`}>
-                    <BookOpen className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-800 text-sm">Badiiy / Adabiy</h3>
-                    <span className="text-[10px] text-slate-400 font-medium">Kitoblar, Tarix, Tasvirlar</span>
-                  </div>
-                </div>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  Har bir iborani jonli va tushunarli badiiy o'zbek tiliga o'tkazadi, o'zbek xalq maqollari yoki o'xshatishlari qo'shiladi.
-                </p>
-                {selectedStyle === "Badiiy" && (
-                  <span className="absolute top-3 right-3 flex h-2 w-2 rounded-full bg-amber-500" />
-                )}
-              </button>
-
+        {/* Style Selection and Quick Features Bar (Useless texts removed completely) */}
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center justify-between pb-2 border-b border-[#453027]/30">
+          
+          {/* Tone Selector */}
+          <div className="flex items-center gap-3">
+            <span className="text-[10px] font-bold text-[#BABABA] uppercase tracking-widest shrink-0">Uslub:</span>
+            <div className="flex gap-2">
+              {(["Rasmiy", "Ilmiy", "Badiiy"] as StyleType[]).map((style) => (
+                <button
+                  key={style}
+                  id={`btn-style-${style.toLowerCase()}`}
+                  type="button"
+                  onClick={() => setSelectedStyle(style)}
+                  className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wider transition-all border cursor-pointer ${
+                    selectedStyle === style
+                      ? "bg-[#FF6D29] text-white border-[#FF6D29] shadow-[0_0_15px_rgba(255,109,41,0.25)]"
+                      : "bg-[#161316]/70 text-[#BABABA] border-[#453027] hover:border-[#FF6D29]/40 hover:text-white"
+                  }`}
+                >
+                  {style}
+                </button>
+              ))}
             </div>
           </div>
-        </section>
 
-        {/* Model selection cards (Interactive, premium design) */}
-        <section className="print:hidden">
-          <div className="flex flex-col space-y-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center space-x-2">
-                <Cpu className="w-3.5 h-3.5" />
-                <span>Ikkinchi Qadam: Sun'iy intellekt modelini tanlang</span>
-              </h2>
-              <div className="text-xs text-slate-400 flex items-center space-x-1.5 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-full">
-                <span className="w-1.5 h-1.5 bg-indigo-600 rounded-full animate-pulse"></span>
-                <span className="text-[10px] text-indigo-700 font-medium">Uzluksiz ulanish (Auto-fallback) faol</span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Gemini 3.5 Flash */}
-              <button
-                id="btn-model-35-flash"
-                type="button"
-                onClick={() => setSelectedModel("gemini-3.5-flash")}
-                className={`relative p-3 rounded-xl text-left border transition-all flex items-center space-x-3 cursor-pointer ${
-                  selectedModel === "gemini-3.5-flash"
-                    ? "bg-indigo-50/60 border-indigo-500 ring-2 ring-indigo-500/10 shadow-sm"
-                    : "bg-white border-slate-200 hover:border-slate-300 hover:shadow-sm"
-                }`}
+          {/* Model and Demo selector bar combined elegantly */}
+          <div className="flex flex-wrap items-center md:justify-end gap-3">
+            <div className="flex items-center gap-2 bg-[#453027]/20 border border-[#453027]/50 px-3.5 py-1.5 rounded-full">
+              <span className="text-[9px] uppercase font-bold text-[#BABABA] tracking-wider">Model:</span>
+              <select
+                value={selectedModel}
+                onChange={(e) => setSelectedModel(e.target.value)}
+                className="bg-transparent text-xs text-[#FF6D29] font-bold focus:outline-hidden border-none pr-1 cursor-pointer"
               >
-                <div className={`p-1.5 rounded-lg ${selectedModel === "gemini-3.5-flash" ? "bg-indigo-600 text-white" : "bg-slate-100 text-slate-500"}`}>
-                  <Sparkles className="w-4 h-4" />
-                </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-slate-800 text-xs">Gemini 3.5 Flash</h4>
-                  <p className="text-[10px] text-slate-500">Standart, lisoniy nozikliklar va mantiq uchun mukammal o'girish tizimi</p>
-                </div>
-                {selectedModel === "gemini-3.5-flash" && (
-                  <Check className="w-4 h-4 text-indigo-600" />
-                )}
-              </button>
-
-              {/* Gemini 3.1 Flash Lite */}
-              <button
-                id="btn-model-31-lite"
-                type="button"
-                onClick={() => setSelectedModel("gemini-3.1-flash-lite")}
-                className={`relative p-3 rounded-xl text-left border transition-all flex items-center space-x-3 cursor-pointer ${
-                  selectedModel === "gemini-3.1-flash-lite"
-                    ? "bg-indigo-50/60 border-indigo-500 ring-2 ring-indigo-500/10 shadow-sm"
-                    : "bg-white border-slate-200 hover:border-slate-300 hover:shadow-sm"
-                }`}
-              >
-                <div className={`p-1.5 rounded-lg ${selectedModel === "gemini-3.1-flash-lite" ? "bg-indigo-600 text-white" : "bg-slate-100 text-slate-500"}`}>
-                  <Cpu className="w-4 h-4" />
-                </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-slate-800 text-xs">Gemini 3.1 Flash Lite</h4>
-                  <p className="text-[10px] text-slate-500">Tez va tezkor tezlik, murakkab bolmagan matnlarni o'girish uchun</p>
-                </div>
-                {selectedModel === "gemini-3.1-flash-lite" && (
-                  <Check className="w-4 h-4 text-indigo-600" />
-                )}
-              </button>
+                <option value="gemini-3.1-flash-lite" className="bg-[#161316] text-[#BABABA]">Gemini 3.1 Lite (Tezkor)</option>
+                <option value="gemini-2.5-flash" className="bg-[#161316] text-[#BABABA]">Gemini 2.5 (Aql-zakovat)</option>
+                <option value="gemini-3.5-flash" className="bg-[#161316] text-[#BABABA]">Gemini 3.5 (Nozik lison)</option>
+              </select>
             </div>
-          </div>
-        </section>
 
-        {/* Extreme Performance & Scale Information Banner */}
-        <section className="bg-emerald-50 border border-emerald-100/80 p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 print:hidden text-xs shadow-xs">
-          <div className="flex items-start sm:items-center space-x-3 text-emerald-900 leading-relaxed">
-            <div className="p-2 bg-emerald-600 text-white rounded-xl shadow-xs shrink-0">
-              <Sparkles className="w-4 h-4 animate-pulse" />
+            {/* Quick Demo Dictionaries Selectors */}
+            <div className="flex items-center gap-1.5">
+              <span className="text-[9px] uppercase font-bold text-[#BABABA]/55 tracking-wider hidden sm:inline">Namunalar:</span>
+              {(["Rasmiy", "Ilmiy", "Badiiy"] as StyleType[]).map((style) => (
+                <button
+                  key={`demo-${style}`}
+                  id={`btn-template-${style.toLowerCase()}`}
+                  type="button"
+                  onClick={() => handleLoadTemplate(style)}
+                  className="bg-[#453027]/10 text-[#BABABA] hover:text-white border border-[#453027]/60 hover:border-[#FF6D29]/60 px-3.5 py-1.5 rounded-full cursor-pointer transition-all text-[10px] font-medium"
+                  title={`${style} namunaviy matnini yuklash`}
+                >
+                  + {style}
+                </button>
+              ))}
             </div>
-            <div>
-              <p className="font-bold text-[13px] text-emerald-950 flex items-center space-x-1.5">
-                <span>20,000 so'zgacha xavfsiz va bo'laklab tarjima qilish faollashtirildi</span>
-                <span className="bg-emerald-600 text-white text-[9px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider text-center">YANGI</span>
-              </p>
-              <p className="text-emerald-800 text-[11px] mt-0.5">
-                Kitoblar, akademik dissertatsiyalar va yirik shartnomalarni xavfsiz va uzilishlarsiz tarjima qiling. Matn avtomatik ravishda 1500 so'zdan qilib mantiqiy bo'linadi va xatosiz o'giriladi.
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center space-x-2 shrink-0">
-            <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full flex items-center space-x-1">
-              <Check className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Dinamik Chunking faol</span>
-            </span>
-          </div>
-        </section>
-
-        {/* Demo Templates quick selector */}
-        <section className="bg-slate-100/70 py-2.5 px-4 rounded-xl border border-slate-200/60 flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-2 sm:space-y-0 print:hidden text-xs">
-          <div className="text-slate-500 font-medium flex items-center space-x-2">
-            <span className="bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-bold text-[10px]">E'LON</span>
-            <span>Sinab ko'rish uchun tezkor demo variantlar:</span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {(["Rasmiy", "Ilmiy", "Badiiy"] as StyleType[]).map((style) => (
-              <button
-                key={style}
-                id={`btn-template-${style.toLowerCase()}`}
-                type="button"
-                onClick={() => handleLoadTemplate(style)}
-                className="bg-white hover:bg-slate-50 border border-slate-200 px-2.5 py-1 rounded-md cursor-pointer transition text-slate-700 font-medium flex items-center space-x-1"
-              >
-                <Plus className="w-3 h-3 text-slate-400" />
-                <span>{style} Matni ({style === "Badiiy" ? "Sh. Holmes" : style === "Ilmiy" ? "Kvant AI" : "MOU"})</span>
-              </button>
-            ))}
           </div>
         </section>
 
@@ -896,39 +801,37 @@ export default function App() {
           
           {/* Left Panel: Kiritish / Input */}
           <div className="flex flex-col space-y-4 print:hidden">
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+            <div className="bg-[#1c191c]/90 rounded-2xl border border-[#453027]/60 shadow-[0_4px_25px_rgba(0,0,0,0.4)] overflow-hidden flex flex-col backdrop-blur-md">
               
-              <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
+              <div className="px-5 py-4 border-b border-[#453027]/40 flex items-center justify-between bg-[#453027]/20">
                 <div className="flex items-center space-x-2">
-                  <span className={`w-2.5 h-2.5 rounded-full ${theme.primary.split(" ")[0]} animate-pulse`} />
-                  <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">Tarjima Matni (Inglizcha / Boshqa til)</span>
+                  <span className="w-2 h-2 rounded-full bg-[#FF6D29] animate-pulse" />
+                  <span className="text-xs font-semibold tracking-wider text-[#BABABA] uppercase">Kiritilayotgan Matn</span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  {sourceText && (
-                    <button
-                      id="btn-clear-source"
-                      type="button"
-                      onClick={() => {
-                        setSourceText("");
-                        setFileName(null);
-                        setErrorMessage("");
-                      }}
-                      className="text-slate-400 hover:text-red-500 text-xs flex items-center space-x-1 font-medium transition cursor-pointer"
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                      <span className="hidden sm:inline">Tozalash</span>
-                    </button>
-                  )}
-                </div>
+                {sourceText && (
+                  <button
+                    id="btn-clear-source"
+                    type="button"
+                    onClick={() => {
+                      setSourceText("");
+                      setFileName(null);
+                      setErrorMessage("");
+                    }}
+                    className="text-[#BABABA]/60 hover:text-[#FF6D29] text-xs flex items-center space-x-1 font-medium transition cursor-pointer"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                    <span>Tozalash</span>
+                  </button>
+                )}
               </div>
 
               {/* Textarea */}
               <div className="relative">
                 <textarea
                   id="source-text-input"
-                  rows={12}
-                  className="w-full p-5 text-slate-800 placeholder-slate-400 focus:outline-hidden resize-y min-h-[280px] text-sm leading-relaxed border-0 focus:ring-0"
-                  placeholder="Tarjima qilinadigan xorijiy matnni bu yerga kiriting, nusxa qo'shing yoki quyidagi sohadan hujjat yuklang..."
+                  rows={10}
+                  className="w-full p-5 text-white placeholder-[#BABABA]/30 focus:outline-hidden resize-y min-h-[250px] text-sm leading-relaxed border-0 bg-transparent"
+                  placeholder="Xorijiy doston yoki rasmiy xatni bu yerga joylang yoki faylni pastga sudrang..."
                   value={sourceText}
                   onChange={(e) => setSourceText(e.target.value)}
                   disabled={isFileLoading}
@@ -936,24 +839,23 @@ export default function App() {
 
                 {/* File Parsing Loading Overlay */}
                 {isFileLoading && (
-                  <div className="absolute inset-0 bg-white/80 backdrop-blur-[2px] flex flex-col items-center justify-center space-y-3 z-20">
-                    <div className="w-10 h-10 rounded-full border-2 border-indigo-200 border-t-indigo-600 animate-spin" />
-                    <div className="text-center space-y-1">
-                      <p className="text-xs font-bold text-slate-800 tracking-tight animate-pulse">Hujjatdan matn ajratib olingmoqda...</p>
-                      <p className="text-[10px] text-slate-400">PDF va Word tarkibidagi lisoniy bloklar saralanmoqda</p>
+                  <div className="absolute inset-0 bg-[#161316]/90 backdrop-blur-xs flex flex-col items-center justify-center space-y-3 z-20">
+                    <div className="w-9 h-9 rounded-full border-2 border-dashed border-[#FF6D29] animate-spin" />
+                    <div className="text-center">
+                      <p className="text-xs font-semibold text-white">Hujjatdan matn o'qilmoqda...</p>
                     </div>
                   </div>
                 )}
 
-                {/* Word & Symbol count absolute overlay bar */}
-                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-[11px] text-slate-400 font-medium pointer-events-none">
-                  <div className="flex items-center space-x-3 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-md border border-slate-100 shadow-xs">
-                    <span>So'zlar: <strong className="text-slate-600">{sourceWordCount}</strong></span>
-                    <span className="text-slate-200">|</span>
-                    <span>Belgilar: <strong className="text-slate-600">{sourceCharCount}</strong></span>
+                {/* Word & Symbol count overlay */}
+                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-[10px] text-[#BABABA]/60 pointer-events-none">
+                  <div className="flex items-center space-x-3 bg-[#161316]/80 px-2.5 py-1 rounded-md border border-[#453027]/40">
+                    <span>So'zlar: <strong className="text-white font-mono">{sourceWordCount}</strong></span>
+                    <span className="text-[#453027]">|</span>
+                    <span>Belgilar: <strong className="text-white font-mono">{sourceCharCount}</strong></span>
                   </div>
                   {fileName && (
-                    <div className="bg-emerald-50 border border-emerald-100 text-emerald-800 px-2 py-0.5 rounded flex items-center space-x-1">
+                    <div className="bg-[#453027]/50 border border-[#FF6D29]/20 text-[#FF6D29] px-2 py-0.5 rounded flex items-center space-x-1 font-mono text-[9px]">
                       <FileCheck className="w-3 h-3" />
                       <span>{fileName}</span>
                     </div>
@@ -961,17 +863,17 @@ export default function App() {
                 </div>
               </div>
 
-              {/* File Upload Zone */}
+              {/* File Upload / Drag zone */}
               <div 
-                className={`border-t border-slate-100 p-5 bg-slate-50/50 transition-all ${
-                  dragActive ? "bg-indigo-50 border-indigo-400" : ""
+                className={`border-t border-[#453027]/40 p-4 bg-[#161316]/20 transition-all ${
+                  dragActive ? "bg-[#453027]/40" : ""
                 }`}
                 onDragEnter={handleDrag}
                 onDragOver={handleDrag}
                 onDragLeave={handleDrag}
                 onDrop={handleDrop}
               >
-                <div className="border border-dashed border-slate-200 hover:border-slate-300 rounded-xl bg-white p-4 text-center transition cursor-pointer flex flex-col items-center relative group">
+                <div className="border border-dashed border-[#453027] hover:border-[#FF6D29]/50 rounded-xl bg-[#161316]/40 p-3.5 text-center transition cursor-pointer flex flex-col items-center relative group">
                   <input
                     type="file"
                     id="file-upload-input"
@@ -980,91 +882,62 @@ export default function App() {
                     accept=".txt,.md,.json,.csv,.xml,.html,.pdf,.docx"
                     disabled={isFileLoading}
                   />
-                  <UploadCloud className="w-8 h-8 text-slate-400 group-hover:text-slate-500 mb-2 transition-transform group-hover:-translate-y-0.5" />
-                  <p className="text-xs font-semibold text-slate-700">O'zbekchaga o'g'irish uchun PDF, Word yoki matnli hujjat yuklang</p>
-                  <p className="text-[10px] text-slate-400 mt-1">Nomi .pdf, .docx, .txt, .md, .json bo'lgan fayllar qo'llab-quvvatlanadi</p>
+                  <UploadCloud className="w-7 h-7 text-[#BABABA]/50 group-hover:text-[#FF6D29] mb-1.5 transition-transform" />
+                  <p className="text-xs font-semibold text-white">PDF, Word yoki TXT faylni shu yerga tashlang</p>
                 </div>
               </div>
 
             </div>
 
             {/* Custom rules/directives Drawer */}
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col space-y-4">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                <span className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center space-x-2">
-                  <BookMarked className="w-4 h-4 text-indigo-600" />
-                  <span>Maxsus Lisoniy Kengaytmalar</span>
+            <div className="bg-[#1c191c]/90 rounded-2xl border border-[#453027]/60 shadow-[0_4px_25px_rgba(0,0,0,0.4)] p-5 flex flex-col space-y-4">
+              <div className="flex items-center justify-between border-b border-[#453027]/30 pb-3">
+                <span className="text-xs font-bold text-white uppercase tracking-wider flex items-center space-x-2">
+                  <BookMarked className="w-4 h-4 text-[#FF6D29]" />
+                  <span>Maxsus Atamalar (Glossary)</span>
                 </span>
-                <span className="text-[10px] text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full font-medium">Faol</span>
+                <span className="text-[10px] text-[#FF6D29] bg-[#453027]/40 px-2.5 py-0.5 rounded-full font-semibold">Tahrirlash</span>
               </div>
 
               {/* Glossary Grid Builder */}
               <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <h4 className="text-[11px] font-bold text-slate-500 uppercase">Atamalar va tarjima mosliklari (CAT Glossary)</h4>
-                  <span className="text-[10px] text-indigo-600 font-semibold">{glossaryTerms.length} ta so'z biriktirilgan</span>
-                </div>
-
-                <div className="space-y-2 max-h-[160px] overflow-y-auto pr-1">
-                  {glossaryTerms.map((term) => (
-                    <div key={term.id} className="flex items-center space-x-2 bg-slate-50 border border-slate-200/60 p-2 rounded-lg">
-                      <div className="flex-1 text-xs font-medium font-mono text-slate-700 truncate" title={term.english}>{term.english}</div>
-                      <div className="text-slate-300">➔</div>
-                      <div className="flex-1 text-xs font-semibold text-slate-800 truncate" title={term.uzbek}>{term.uzbek}</div>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setGlossaryTerms((prev) => prev.filter((t) => t.id !== term.id));
-                        }}
-                        className="text-slate-400 hover:text-red-500 p-1 transition cursor-pointer"
-                        title="Atamani o'chirish"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  ))}
-                  {glossaryTerms.length === 0 && (
-                    <div className="text-center py-4 text-slate-400 text-[11px]">
-                      Hozircha maxsus atamalar mavjud emas. Quyidan yangi atama qo'shing.
-                    </div>
-                  )}
-                </div>
+                {glossaryTerms.length > 0 && (
+                  <div className="space-y-2 max-h-[140px] overflow-y-auto pr-1">
+                    {glossaryTerms.map((term) => (
+                      <div key={term.id} className="flex items-center space-x-2 bg-[#161316]/80 border border-[#453027]/40 p-2 rounded-lg">
+                        <div className="flex-1 text-xs font-mono text-[#BABABA] truncate" title={term.english}>{term.english}</div>
+                        <div className="text-[#FF6D29] text-[10px]">➔</div>
+                        <div className="flex-1 text-xs font-semibold text-white truncate" title={term.uzbek}>{term.uzbek}</div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setGlossaryTerms((prev) => prev.filter((t) => t.id !== term.id));
+                          }}
+                          className="text-[#BABABA]/40 hover:text-red-400 p-1 transition cursor-pointer"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
                 {/* Form to add single glossary term */}
                 <div className="grid grid-cols-2 gap-2 pt-1">
-                  <div>
-                    <input
-                      type="text"
-                      id="new-term-eng"
-                      placeholder="Inglizcha so'z"
-                      className="w-full text-xs p-2 border border-slate-200 rounded-lg focus:outline-hidden focus:border-indigo-400 focus:bg-white transition bg-slate-50 font-medium"
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          const engInput = e.currentTarget;
-                          const uzbInput = document.getElementById("new-term-uzb") as HTMLInputElement;
-                          if (engInput.value.trim() && uzbInput.value.trim()) {
-                            setGlossaryTerms(prev => [
-                              ...prev,
-                              { id: Math.random().toString(), english: engInput.value.trim(), uzbek: uzbInput.value.trim() }
-                            ]);
-                            engInput.value = "";
-                            uzbInput.value = "";
-                            engInput.focus();
-                          }
-                        }
-                      }}
-                    />
-                  </div>
+                  <input
+                    type="text"
+                    id="new-term-eng"
+                    placeholder="Inglizcha so'z"
+                    className="text-xs p-2.5 border border-[#453027] rounded-lg bg-[#161316]/60 text-white placeholder-[#BABABA]/30 focus:outline-[#FF6D29]/50"
+                  />
                   <div className="flex items-center space-x-1">
                     <input
                       type="text"
                       id="new-term-uzb"
                       placeholder="O'zbekcha tarjimasi"
-                      className="w-full flex-1 text-xs p-2 border border-slate-200 rounded-lg focus:outline-hidden focus:border-indigo-400 focus:bg-white transition bg-slate-50 font-medium"
+                      className="w-full flex-1 text-xs p-2.5 border border-[#453027] bg-[#161316]/60 rounded-lg text-white placeholder-[#BABABA]/30 focus:outline-[#FF6D29]/50"
                       onKeyDown={(e) => {
                         if (e.key === 'Enter') {
-                          e.preventDefault();
                           const uzbInput = e.currentTarget;
                           const engInput = document.getElementById("new-term-eng") as HTMLInputElement;
                           if (engInput.value.trim() && uzbInput.value.trim()) {
@@ -1091,31 +964,22 @@ export default function App() {
                           ]);
                           (document.getElementById("new-term-eng") as HTMLInputElement).value = "";
                           (document.getElementById("new-term-uzb") as HTMLInputElement).value = "";
-                          (document.getElementById("new-term-eng") as HTMLInputElement).focus();
                         }
                       }}
-                      className="p-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition cursor-pointer flex items-center justify-center shrink-0"
-                      title="Qo'shish"
+                      className="p-2.5 rounded-lg bg-[#FF6D29] hover:bg-[#e0581b] text-white transition cursor-pointer flex items-center justify-center shrink-0"
                     >
-                      <Plus className="w-3.5 h-3.5" />
+                      <Plus className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
-                <p className="text-[10px] text-slate-400">
-                  Maslahat: Atama yozib, [Enter] ni bossangiz ham ro'yxatga qo'shiladi.
-                </p>
               </div>
 
               {/* Advanced Custom prompts instructions input drawer */}
-              <div className="border-t border-slate-100 pt-3 flex flex-col space-y-1.5">
-                <label className="text-[11px] font-bold text-slate-500 uppercase flex items-center space-x-1">
-                  <Settings className="w-3.5 h-3.5" />
-                  <span>Qo'shimcha boshqa ko'rsatmalar</span>
-                </label>
+              <div className="border-t border-[#453027]/30 pt-3 flex flex-col space-y-1">
                 <textarea
                   rows={2}
-                  className="w-full text-xs font-mono p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-hidden focus:border-slate-400 focus:bg-white transition"
-                  placeholder="Masalan: Maxfiy kodli so'zlarni tarjima qilma..."
+                  className="w-full text-xs font-mono p-2.5 bg-[#161316]/80 border border-[#453027] rounded-lg text-white placeholder-[#BABABA]/30 focus:outline-[#FF6D29]/40"
+                  placeholder="Model uchun qo'shimcha lisoniy talablar bo'lsa kiriting (ixtiyoriy)..."
                   value={customInstructions}
                   onChange={(e) => setCustomInstructions(e.target.value)}
                 />
@@ -1129,10 +993,10 @@ export default function App() {
                 type="button"
                 onClick={translateText}
                 disabled={isLoading || !sourceText.trim()}
-                className={`w-full py-4 px-6 rounded-2xl font-bold font-display shadow-md hover:shadow-lg transition-all text-center flex items-center justify-center space-x-3 cursor-pointer ${
+                className={`w-full py-4 px-6 rounded-2xl font-bold tracking-wider transition-all text-center flex items-center justify-center space-x-3 cursor-pointer ${
                   !sourceText.trim() 
-                    ? "bg-slate-300 text-slate-500 cursor-not-allowed shadow-none" 
-                    : theme.gradient ? `bg-gradient-to-r ${theme.gradient} text-white` : theme.primary
+                    ? "bg-[#453027]/20 border border-[#453027]/50 text-[#BABABA]/30 cursor-not-allowed shadow-none" 
+                    : "bg-[#FF6D29] hover:bg-[#e0581b] text-white shadow-[0_4px_25px_rgba(255,109,41,0.35)] hover:shadow-[0_4px_35px_rgba(255,109,41,0.5)] active:scale-[0.99]"
                 }`}
               >
                 {isLoading ? (
@@ -1141,11 +1005,11 @@ export default function App() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    <span>Ishlamoqda...</span>
+                    <span>O'girilmoqda...</span>
                   </>
                 ) : (
                   <>
-                    <Sparkles className="w-5 h-5 animate-pulse" />
+                    <Sparkles className="w-5 h-5 animate-pulse text-white" />
                     <span className="tracking-wide">O'zbek Tiliga Tarjima Qilish ({selectedStyle})</span>
                   </>
                 )}
@@ -1159,12 +1023,12 @@ export default function App() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-xl flex items-start space-x-3 shadow-xs"
+                  className="bg-[#3b1616]/90 border border-red-500/30 text-red-100 p-4 rounded-xl flex items-start space-x-3 shadow-lg backdrop-blur-md"
                 >
-                  <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+                  <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-xs font-bold font-display text-red-900">Xatolik kutilmoqda</h4>
-                    <p className="text-xs mt-1 text-red-800 leading-relaxed">{errorMessage}</p>
+                    <h4 className="text-xs font-bold text-red-200">Tarjima jarayonida xatolik</h4>
+                    <p className="text-xs mt-1 text-red-300/85 leading-relaxed">{errorMessage}</p>
                   </div>
                 </motion.div>
               )}
@@ -1182,28 +1046,26 @@ export default function App() {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
-                  className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 flex flex-col items-center justify-center min-h-[480px] text-center space-y-6"
+                  className="bg-[#1c191c]/90 rounded-2xl border border-[#453027]/60 shadow-[0_4px_25px_rgba(0,0,0,0.4)] p-8 flex flex-col items-center justify-center min-h-[480px] text-center space-y-6"
                 >
                   <div className="relative">
                     {/* Ring animated glows */}
-                    <div className={`absolute -inset-4 rounded-full bg-gradient-to-r ${theme.gradient} opacity-20 blur-xl animate-pulse-glow`} />
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-tr ${theme.gradient} text-white flex items-center justify-center shadow-lg relative`}>
+                    <div className="absolute -inset-4 rounded-full bg-[#FF6D29] opacity-20 blur-xl animate-pulse-glow" />
+                    <div className="w-16 h-16 rounded-2xl bg-[#453027]/30 text-[#FF6D29] border border-[#453027] flex items-center justify-center shadow-lg relative">
                       <Languages className="w-8 h-8 animate-bounce" />
                     </div>
                   </div>
 
-                  <div className="space-y-2 max-w-sm">
-                    <h3 className="text-md font-bold font-display text-slate-800">Tarjima ishkalanmoqda</h3>
-                    <p className="text-xs text-slate-500 leading-relaxed">
-                      Uzbek tili lug'atlari, qiyosiy grammatika qoidalari va maxsus uslub mezonlari yuklanib tuzilmoqda.
+                  <div className="space-y-1 max-w-sm">
+                    <h3 className="text-md font-bold text-white uppercase tracking-wider">Tarjima qilinmoqda</h3>
+                    <p className="text-xs text-[#BABABA]/60 leading-relaxed font-sans">
+                      Lisoniy tizim va maxsus uslub doirasida tasniflanmoqda...
                     </p>
-                  </div>
-
-                  {/* Active step progress indicator */}
+                  </div>                  {/* Active step progress indicator */}
                   <div className="w-full max-w-xs space-y-2 text-center">
-                    <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                    <div className="h-1 w-full bg-[#161316] rounded-full overflow-hidden border border-[#453027]/30">
                       <motion.div 
-                        className={`h-full bg-gradient-to-r ${theme.gradient || "from-teal-500 to-emerald-500"}`}
+                        className="h-full bg-[#FF6D29] shadow-[0_0_8px_#FF6D29]"
                         initial={{ width: "10%" }}
                         animate={{ 
                           width: `${((loadingStep + 1) / LOADING_STEPS.length) * 100}%` 
@@ -1211,27 +1073,24 @@ export default function App() {
                         transition={{ duration: 1 }}
                       />
                     </div>
-                    <p className="text-xs font-mono font-bold text-slate-600 animate-pulse">
+                    <p className="text-[10px] font-mono font-bold text-[#FF6D29] animate-pulse">
                       {LOADING_STEPS[loadingStep]}
                     </p>
                   </div>
 
                   {/* Multi-chunk progress overlay builder */}
                   {totalChunks > 1 && (
-                    <div className="w-full max-w-xs bg-indigo-50/75 border border-indigo-100/80 rounded-xl p-3.5 space-y-2 text-center">
-                      <div className="flex items-center justify-between text-[11px] font-bold text-indigo-700">
-                        <span>Hujjat tarjimasi jarayoni</span>
-                        <span>{translatingChunkIndex} / {totalChunks}-qism ({Math.round(((translatingChunkIndex) / totalChunks) * 100)}%)</span>
+                    <div className="w-full max-w-xs bg-[#453027]/10 border border-[#453027]/50 rounded-xl p-3.5 space-y-2 text-center">
+                      <div className="flex items-center justify-between text-[10px] font-bold text-[#FF6D29]">
+                        <span>Hujjat o'girilmoqda</span>
+                        <span>{translatingChunkIndex} / {totalChunks}-qism</span>
                       </div>
-                      <div className="h-2 w-full bg-indigo-100 rounded-full overflow-hidden">
+                      <div className="h-1.5 w-full bg-[#161316] rounded-full overflow-hidden">
                         <div 
-                          className="h-full bg-indigo-600 rounded-full transition-all duration-300" 
+                          className="h-full bg-[#FF6D29] rounded-full transition-all duration-300" 
                           style={{ width: `${(translatingChunkIndex / totalChunks) * 100}%` }}
                         />
                       </div>
-                      <p className="text-[10px] text-slate-500 leading-relaxed">
-                        Katta matnlar Gemini quvvati yordamida uzilib qolmasligi uchun bo'laklab o'giriladi va avtomatik birlashtiriladi.
-                      </p>
                     </div>
                   )}
                 </motion.div>
@@ -1242,26 +1101,35 @@ export default function App() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col min-h-[480px] print:border-none print:shadow-none"
+                  className="bg-[#1c191c]/90 rounded-2xl border border-[#453027]/60 shadow-[0_4px_25px_rgba(0,0,0,0.4)] overflow-hidden flex flex-col min-h-[480px] print:border-none print:shadow-none"
                 >
                   
                   {/* Output Header Panel */}
-                  <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/70 print:hidden">
+                  <div className="px-5 py-4 border-b border-[#453027]/40 flex items-center justify-between bg-[#453027]/20 print:hidden">
                     <div className="flex items-center space-x-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-indigo-600" />
-                      <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">O'zbekcha Tarjima (Natija)</span>
-                    </div>
-
-                    {/* Output action buttons */}
+                      <span className="w-2 h-2 bg-[#FF6D29] rounded-full" />
+                      <span className="text-xs font-semibold tracking-wider text-[#BABABA] uppercase">O'zbekcha Tarjima</span>
+                    </div>                    {/* Output action buttons */}
                     {translatedText && (
-                      <div className="flex items-center space-x-1 sm:space-x-2">
+                      <div className="flex items-center space-x-1.5">
+                        {/* Audio speak */}
+                        <button
+                          id="btn-speak-output"
+                          type="button"
+                          onClick={handleSpeak}
+                          title={isSpeaking ? "Ovozni to'xtatish" : "Ovozli eshitish (Talaffuz)"}
+                          className="p-1.5 rounded-md border border-[#453027] text-[#BABABA] hover:border-[#FF6D29] hover:text-white transition cursor-pointer"
+                        >
+                          {isSpeaking ? <VolumeX className="w-3.5 h-3.5 text-[#FF6D29] animate-pulse" /> : <Volume2 className="w-3.5 h-3.5" />}
+                        </button>
+
                         {/* Print */}
                         <button
                           id="btn-print-output"
                           type="button"
                           onClick={handlePrint}
-                          title="Chop etish yoki PDF yuklab olish"
-                          className="p-1.5 rounded-md border border-slate-200 text-slate-600 hover:bg-slate-50 transition cursor-pointer"
+                          title="Chop etish"
+                          className="p-1.5 rounded-md border border-[#453027] text-[#BABABA] hover:border-[#FF6D29] hover:text-white transition cursor-pointer"
                         >
                           <Printer className="w-3.5 h-3.5" />
                         </button>
@@ -1271,15 +1139,14 @@ export default function App() {
                           id="btn-edit-toggle"
                           type="button"
                           onClick={() => setIsEditing(!isEditing)}
-                          title={isEditing ? "Tahrirni saqlash" : "Natijani qayta tahrirlash"}
-                          className={`p-1.5 rounded-md border text-xs font-semibold flex items-center space-x-1 cursor-pointer ${
+                          className={`p-1.5 rounded-md border text-xs font-semibold flex items-center space-x-1 cursor-pointer transition ${
                             isEditing 
-                              ? "bg-emerald-50 border-emerald-200 text-emerald-800" 
-                              : "border-slate-200 text-slate-600 hover:bg-slate-50"
+                              ? "bg-[#FF6D29] border-[#FF6D29] text-white" 
+                              : "border-[#453027] text-[#BABABA] hover:border-[#FF6D29] hover:text-white"
                           }`}
                         >
                           {isEditing ? <Save className="w-3.5 h-3.5" /> : <Edit3 className="w-3.5 h-3.5" />}
-                          <span className="hidden sm:inline">{isEditing ? "Saqlash" : "Tahrir qilish"}</span>
+                          <span>{isEditing ? "Saqlash" : "Tahrirlash"}</span>
                         </button>
 
                         {/* Copy translation */}
@@ -1287,10 +1154,10 @@ export default function App() {
                           id="btn-copy-output"
                           type="button"
                           onClick={handleCopy}
-                          className="p-1.5 rounded-md bg-indigo-50 hover:bg-indigo-100/80 border border-indigo-100 text-indigo-700 text-xs font-semibold flex items-center space-x-1 cursor-pointer transition"
+                          className="p-1.5 rounded-md bg-[#FF6D29] hover:bg-[#e0581b] text-white text-xs font-semibold flex items-center space-x-1 cursor-pointer transition"
                         >
-                          {isCopied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-                          <span>{isCopied ? "Nusxalandi!" : "Nusxa olish"}</span>
+                          {isCopied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                          <span>Nusxa olish</span>
                         </button>
                       </div>
                     )}
@@ -1301,21 +1168,14 @@ export default function App() {
                     
                     {!translatedText ? (
                       /* Empty state helper card */
-                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 bg-slate-50/20">
-                        <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 mb-4 border border-slate-200/50">
-                          <Languages className="w-8 h-8" />
+                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 bg-[#161316]/20">
+                        <div className="w-12 h-12 rounded-full bg-[#453027]/20 border border-[#453027] flex items-center justify-center text-[#BABABA]/40 mb-4">
+                          <Languages className="w-6 h-6" />
                         </div>
-                        <h4 className="text-slate-800 font-bold font-display text-sm tracking-tight">O'zbek tili tarjima oynasi</h4>
-                        <p className="text-slate-400 text-xs max-w-xs mt-1 leading-relaxed">
-                          Inglizcha matn kiritib "O'zbek Tiliga Tarjima Qilish" tugmasini bosing yoki demo shablon yuklang.
+                        <h4 className="text-white font-semibold text-xs tracking-wider uppercase">O'zbekcha tarjima oynasi</h4>
+                        <p className="text-[#BABABA]/40 text-[11px] max-w-xs mt-1 leading-relaxed">
+                          Soddalashtirilgan minimalist visual dizayn. Xorijiy matn kiritgach o'girmalar shu yerda oydinlashadi.
                         </p>
-                        
-                        <div className="mt-6 flex flex-wrap gap-2 justify-center max-w-sm">
-                          <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Kontekst tahlili</span>
-                          <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Idiomaviy moslashuv</span>
-                          <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Stuktura saqlanishi</span>
-                          <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Quruq kalkasiz tarjima</span>
-                        </div>
                       </div>
                     ) : (
                       /* Main output wrapper */
@@ -1325,34 +1185,34 @@ export default function App() {
                           /* Interactive post-editing stage */
                           <textarea
                             id="edited-translation-input"
-                            className="w-full flex-1 p-4 text-sm font-mono border border-indigo-200 rounded-xl focus:outline-hidden focus:ring-1 focus:ring-indigo-300 min-h-[300px] leading-relaxed resize-y bg-slate-50/50"
+                            className="w-full flex-1 p-4 text-sm font-mono border border-[#453027] rounded-xl focus:outline-none min-h-[300px] leading-relaxed resize-y bg-[#161316] text-white"
                             value={editedTranslation}
                             onChange={(e) => setEditedTranslation(e.target.value)}
                           />
                         ) : (
                           /* High-fidelity rendered markdown */
-                          <div id="rendered-output-markdown" className="prose prose-slate max-w-none text-slate-800 text-sm leading-relaxed prose-sm flex-1 break-words prose-headings:font-display prose-headings:font-bold prose-headings:tracking-tight prose-a:text-indigo-600">
+                          <div id="rendered-output-markdown" className="rendered-markdown text-stone-200 text-sm leading-relaxed flex-1 break-words prose prose-invert max-w-none">
                             <Markdown>{translatedText}</Markdown>
                           </div>
                         )}
 
                         {/* Active footer toolbar (non printable) */}
-                        <div className="mt-8 border-t border-slate-100 pt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 text-xs print:hidden">
-                          <div className="text-slate-400 font-medium self-center">
-                            <span>Sinflash uslubi: <strong>{selectedStyle}</strong></span>
-                            <span className="mx-2 text-slate-200">|</span>
-                            <span>Tarjimadagi so'zlar: <strong className="text-slate-600">{targetWordCount}</strong></span>
+                        <div className="mt-8 border-t border-[#453027]/40 pt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 text-[10px] print:hidden">
+                          <div className="text-[#BABABA]/40 font-mono">
+                            <span>Soha: <strong className="text-[#BABABA]">{selectedStyle}</strong></span>
+                            <span className="mx-2 text-[#453027]">|</span>
+                            <span>So'zlar: <strong className="text-[#BABABA]">{targetWordCount}</strong></span>
                           </div>
                           
-                          <div className="flex flex-wrap items-center gap-2">
+                          <div className="flex flex-wrap items-center gap-1.5">
                             {/* Download Word DOC */}
                             <button
                               id="btn-download-doc"
                               type="button"
                               onClick={() => downloadFile("doc")}
-                              className="bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 px-2.5 py-1.5 rounded-lg flex items-center space-x-1.5 font-semibold cursor-pointer transition"
+                              className="bg-[#161316] hover:bg-[#453027]/30 border border-[#453027] hover:border-[#FF6D29]/40 text-[#BABABA] hover:text-white px-2.5 py-1.5 rounded-lg flex items-center space-x-1.5 font-semibold cursor-pointer transition"
                             >
-                              <FileDown className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
+                              <FileDown className="w-3.5 h-3.5 text-[#FF6D29]" />
                               <span>Word (.doc) yuklash</span>
                             </button>
 
@@ -1361,10 +1221,10 @@ export default function App() {
                               id="btn-download-md"
                               type="button"
                               onClick={() => downloadFile("md")}
-                              className="bg-slate-100 hover:bg-slate-200/80 border border-slate-200/60 text-slate-700 px-2.5 py-1.5 rounded-lg flex items-center space-x-1.5 font-semibold cursor-pointer transition"
+                              className="bg-[#161316] hover:bg-[#453027]/30 border border-[#453027] hover:border-[#FF6D29]/40 text-[#BABABA] hover:text-white px-2.5 py-1.5 rounded-lg flex items-center space-x-1.5 font-semibold cursor-pointer transition"
                             >
                               <FileDown className="w-3.5 h-3.5" />
-                              <span>Markdown (.md) yuklash</span>
+                              <span>Markdown</span>
                             </button>
 
                             {/* Download TXT */}
@@ -1372,10 +1232,10 @@ export default function App() {
                               id="btn-download-txt"
                               type="button"
                               onClick={() => downloadFile("txt")}
-                              className="bg-slate-100 hover:bg-slate-200/80 border border-slate-200/60 text-slate-700 px-2.5 py-1.5 rounded-lg flex items-center space-x-1.5 font-semibold cursor-pointer transition"
+                              className="bg-[#161316] hover:bg-[#453027]/30 border border-[#453027] hover:border-[#FF6D29]/40 text-[#BABABA] hover:text-white px-2.5 py-1.5 rounded-lg flex items-center space-x-1.5 font-semibold cursor-pointer transition"
                             >
                               <FileDown className="w-3.5 h-3.5 opacity-70" />
-                              <span>TXT yuklash</span>
+                              <span>TXT</span>
                             </button>
                           </div>
                         </div>
@@ -1394,19 +1254,10 @@ export default function App() {
         </div>
 
         {/* Translation Guarantee/Explanation footer card (Non-printable) */}
-        <footer className="bg-slate-200/40 rounded-2xl border border-slate-200/50 p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs text-slate-500 leading-relaxed print:hidden">
-          <div className="space-y-1">
-            <h5 className="font-bold text-slate-700 flex items-center space-x-1.5">
-              <Sparkles className="w-4 h-4 text-amber-500 shrink-0" />
-              <span>O'zbekiston Milliy Tarjima Va Grammatika Standartlari</span>
-            </h5>
-            <p>
-              Tizim o'zbek tili morfemikasi, punktuatsiyasi va turli kasbiy tarmoqlar uslubiy me'yorlariga rioya etadi.
-              Word yoki PDF qilganda sarlavha va shakllar to'liq muvozanatlashgan holda qaytadi.
-            </p>
-          </div>
-          <div className="shrink-0 flex items-center space-x-2">
-            <span className="px-3 py-1.5 rounded-lg bg-white border border-slate-200 font-semibold text-slate-600 block">Kalkasiz Muqobil Tarjima</span>
+        <footer className="bg-[#1c191c]/40 rounded-2xl border border-[#453027]/30 p-5 flex items-center justify-between gap-4 text-[10px] text-[#BABABA]/40 print:hidden">
+          <div className="flex items-center space-x-2">
+            <Sparkles className="w-3.5 h-3.5 text-[#FF6D29] shrink-0 animate-pulse" />
+            <span>Kalkasiz o'zbek tili tarjima standarti. muhammadai.uz hamkorlik loyihasi.</span>
           </div>
         </footer>
 

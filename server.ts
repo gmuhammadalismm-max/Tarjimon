@@ -84,7 +84,9 @@ async function extractTextFromPdf(buffer: Buffer): Promise<string> {
     const unpdfModule = await import("unpdf");
     if (unpdfModule && typeof unpdfModule.extractText === "function") {
       console.log("Using unpdf for PDF text extraction...");
-      const uint8Array = new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+      // Creating a completely fresh, unpooled Uint8Array copy to avoid pool array-buffer leaking issues
+      const uint8Array = new Uint8Array(buffer.length);
+      uint8Array.set(buffer);
       const result: any = await unpdfModule.extractText(uint8Array, { mergePages: true });
       if (result) {
         if (typeof result.text === "string") {
@@ -260,15 +262,12 @@ ${customInstructions ? `Foydalanuvchining qo'shimcha maxsus ko'rsatmalari (gloss
 ${processedText}
 --- END OF BLOCK ---`;
 
-    const selectedModel = model || "gemini-3.5-flash";
+    const selectedModel = model || "gemini-3.1-flash-lite";
     const modelsToTry = [
       selectedModel,
-      "gemini-2.5-flash",
-      "gemini-2.5-pro",
-      "gemini-1.5-flash",
-      "gemini-3.5-flash",
       "gemini-3.1-flash-lite",
-      "gemini-1.5-pro"
+      "gemini-2.5-flash",
+      "gemini-3.5-flash"
     ];
     const uniqueModels = Array.from(new Set(modelsToTry));
 
@@ -289,24 +288,6 @@ ${processedText}
             config: {
               systemInstruction: systemInstruction,
               temperature: 0.3, // Lower temperature to increase precision & adherence to grammar
-              safetySettings: [
-                {
-                  category: "HARM_CATEGORY_HATE_SPEECH",
-                  threshold: "BLOCK_NONE"
-                },
-                {
-                  category: "HARM_CATEGORY_HARASSMENT",
-                  threshold: "BLOCK_NONE"
-                },
-                {
-                  category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-                  threshold: "BLOCK_NONE"
-                },
-                {
-                  category: "HARM_CATEGORY_DANGEROUS_CONTENT",
-                  threshold: "BLOCK_NONE"
-                }
-              ]
             },
           });
 
@@ -315,7 +296,7 @@ ${processedText}
             break; // Success! Break out of the attempts loop for this model
           }
         } catch (err: any) {
-          console.error(`Error on model ${currentModel} (Attempt ${attempt}/${maxRetries}):`, err);
+          console.log(`Temporary issue on model ${currentModel} (Attempt ${attempt}/${maxRetries}): ${err?.message || err}`);
           lastError = err;
 
           const errStr = String(err?.message || err || "").toUpperCase();
