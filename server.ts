@@ -84,7 +84,8 @@ async function extractTextFromPdf(buffer: Buffer): Promise<string> {
     const unpdfModule = await import("unpdf");
     if (unpdfModule && typeof unpdfModule.extractText === "function") {
       console.log("Using unpdf for PDF text extraction...");
-      const result: any = await unpdfModule.extractText(buffer, { mergePages: true });
+      const uint8Array = new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+      const result: any = await unpdfModule.extractText(uint8Array, { mergePages: true });
       if (result) {
         if (typeof result.text === "string") {
           return result.text;
