@@ -41,13 +41,16 @@ body {
   z-index: -20;
 }
 
-/* Glowing amber accent pulse animation */
+/* Glowing amber accent pulse animation - optimized to avoid repaint lag with massive blur */
 @keyframes pulseGlow {
-  0%, 100% { opacity: 0.35; transform: scale(1); }
-  50% { opacity: 0.55; transform: scale(1.05); }
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.16; }
 }
 
 .animate-pulse-glow {
-  animation: pulseGlow 4s infinite ease-in-out;
+  animation: pulseGlow 8s infinite ease-in-out;
+  will-change: opacity;
+  transform: translateZ(0); /* Force GPU acceleration */
+  backface-visibility: hidden;
 }
 
