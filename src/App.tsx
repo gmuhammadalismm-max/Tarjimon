@@ -107,6 +107,33 @@ const safeLocalStorage = {
   }
 };
 
+// Helper to route API requests correctly when running as static Netlify webpage
+const getApiUrl = (path: string): string => {
+  const host = typeof window !== "undefined" ? window.location.hostname : "";
+  // If running in development or directly on the native cloud run container instance
+  if (
+    host.includes("localhost") || 
+    host.includes("127.0.0.1") || 
+    host.includes("asia-southeast1.run.app") || 
+    host.includes("cloudshell") ||
+    !host
+  ) {
+    return path;
+  }
+  
+  // If hosted on Netlify, Vercel, or custom domain, route to our Cloud Run backend
+  try {
+    const customBackend = safeLocalStorage.getItem("custom_backend_url");
+    if (customBackend && customBackend.trim()) {
+      return `${customBackend.trim().replace(/\/$/, "")}${path}`;
+    }
+  } catch (e) {}
+
+  // Fallback to the live Cloud Run backend URL of this workspace
+  const fallbackBackend = "https://ais-pre-47xjit5llf73mhbknv7gu7-944216429153.asia-southeast1.run.app";
+  return `${fallbackBackend}${path}`;
+};
+
 export default function App() {
   const [sourceText, setSourceText] = useState("");
   const [translatedText, setTranslatedText] = useState("");
@@ -147,6 +174,15 @@ export default function App() {
     }
   });
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [customBackendUrl, setCustomBackendUrl] = useState(() => {
+    try {
+      return (typeof window !== "undefined" && window.localStorage)
+        ? window.localStorage.getItem("custom_backend_url") || ""
+        : "";
+    } catch {
+      return "";
+    }
+  });
 
   // Audio browser synthesis support
   const synthRef = useRef<SpeechSynthesis | null>(null);
@@ -313,7 +349,7 @@ export default function App() {
             }
             const base64Data = dataUrl.substring(commaIndex + 1);
 
-            const res = await fetch("/api/parse-document", {
+            const res = await fetch(getApiUrl("/api/parse-document"), {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ base64Data, fileName: file.name }),
@@ -535,7 +571,7 @@ ${customInstructions ? `GLOSSARY / ADAPTATION RULES:\nYou MUST apply the followi
           chunkResult = generated;
         } else {
           // --- ORDINARY BACKEND EXPRESS SERVER CALL ---
-          const response = await fetch("/api/translate", {
+          const response = await fetch(getApiUrl("/api/translate"), {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -550,7 +586,7 @@ ${customInstructions ? `GLOSSARY / ADAPTATION RULES:\nYou MUST apply the followi
 
           const contentType = response.headers.get("content-type");
           if (contentType && contentType.includes("text/html")) {
-            throw new Error("Tizim hozirda statik xostingda (masalan, Netlify) demo rejimda ishlamoqda. Netlify faqat static fayllarni o'gira oladi va Node.js server drayverlarimizni ishlatmaydi. Talabalar ushbu ajoyib tizimni mutlaqo tekin, cheksiz va xatolarsiz umrbod ishlatishlari uchun o'ng burchakdagi 'Tekin API Rejim' sozlamasidan o'zlarining shaxsiy bepul API kalitlarini kiritib ishlashlari tavsiya etiladi.");
+            throw new Error("Tizim hozirda statik xostingda (masalan, Netlify) demo rejimda ishlamoqda, ammo server ulanishi amalga oshmadi. O'ng burchakdagi 'Sozlamalar' tugmasi orqali o'zingizning bepul Gemini API kalitingizni kiriting yoki server manzilini to'g'irlang.");
           }
 
           let data;
@@ -768,15 +804,11 @@ ${customInstructions ? `GLOSSARY / ADAPTATION RULES:\nYou MUST apply the followi
               id="btn-toggle-settings"
               type="button"
               onClick={() => setIsSettingsOpen(true)}
-              className={`px-4 py-2 border rounded-full text-xs font-semibold tracking-wider transition-all flex items-center gap-2 shadow-sm cursor-pointer ${
-                apiKey 
-                  ? "border-emerald-500/50 hover:border-emerald-500 bg-emerald-500/10 text-emerald-300" 
-                  : "border-[#453027] hover:border-[#FF6D29] hover:text-[#FF6D29] bg-[#1c191c] text-white"
-              }`}
-              title="Netlify yoki boshqa statik hostingda bepul cheksiz ishlash uchun sozlash"
+              className="px-4 py-2 border border-[#453027] hover:border-[#FF6D29] hover:text-[#FF6D29] rounded-full text-xs font-semibold tracking-wider transition-all bg-[#1c191c] text-white flex items-center gap-2 shadow-sm cursor-pointer"
+              title="Ulanish va bepul Gemini server sozlamalari"
             >
-              <Settings className={`w-3.5 h-3.5 ${apiKey ? "text-emerald-400 animate-spin" : "text-[#FF6D29]"}`} style={{ animationDuration: apiKey ? "10s" : "0s" }} />
-              <span>{apiKey ? "API Rejim: Faol" : "Tekin API Rejim"}</span>
+              <Settings className="w-3.5 h-3.5 text-[#FF6D29] animate-spin" style={{ animationDuration: "15s" }} />
+              <span>Sozlamalar (Avtomat)</span>
             </button>
 
             {/* History Trigger Button */}
@@ -1447,7 +1479,7 @@ ${customInstructions ? `GLOSSARY / ADAPTATION RULES:\nYou MUST apply the followi
               <div className="flex items-center justify-between border-b border-[#453027]/50 pb-3">
                 <div className="flex items-center space-x-2.5">
                   <Settings className="w-5 h-5 text-[#FF6D29] animate-spin" style={{ animationDuration: "12s" }} />
-                  <h3 className="text-base font-bold text-white tracking-wide">Tekin API Rejim Sozlamalari</h3>
+                  <h3 className="text-base font-bold text-white tracking-wide">Ulanish va Server Sozlamalari</h3>
                 </div>
                 <button
                   type="button"
@@ -1458,25 +1490,52 @@ ${customInstructions ? `GLOSSARY / ADAPTATION RULES:\nYou MUST apply the followi
                 </button>
               </div>
 
-              <div className="text-xs text-[#BABABA] leading-relaxed space-y-2">
-                <p>
-                  Ushbu tizim hozirda statik xostingda (masalan, Netlify) ishlamoqda. Netlify kabi tekin xizmatlar faqat statik sahifalarni qo'llab-quvvatlaydi, Node.js server drayverlarimizni esa ishlata maydi.
-                </p>
-                <div className="p-3 bg-[#453027]/10 border border-[#453027]/40 rounded-xl space-y-1.5 text-[#BABABA]">
-                  <p className="font-bold text-white text-[11px] uppercase tracking-wider text-[#FF6D29]">Talabalar uchun umrbod cheksiz va tekin:</p>
-                  <ol className="list-decimal list-inside space-y-1 text-[11px]">
-                    <li>Google AI Studio (<a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer" className="text-[#FF6D29] underline hover:text-[#e0581b]">aistudio.google.com</a>) saytiga o'ting.</li>
-                    <li>O'z Google pochtangiz orqali mutlaqo bepul va tezkor o'z shaxsiy **Gemini API Key (Kalit)** yarating.</li>
-                    <li>Olgan kalitingizni quyidagi maydonga kiriting va saqlang!</li>
-                  </ol>
+              {/* AUTOMATION EXPLANATION BADGE */}
+              <div className="p-3.5 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl space-y-1.5">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                  <p className="font-bold text-emerald-400 text-xs uppercase tracking-wider">Avtomatik Ulanish Faol</p>
                 </div>
-                <p className="text-[10px] text-[#BABABA]/60 italic">
-                  Eslatma: Kalit faqat sizning brauzeringizda (localStorage'da) xavfsiz saqlanadi. Hech qanday serverga yoki uchinchi shaxsga hech qachon yuborilmaydi.
+                <p className="text-[11px] text-[#BABABA] leading-relaxed">
+                  Tizim Netlify kabi statik xostinglarda ham **sozlamalarsiz to'liq ishlaydi**! Tarjima qilish va dökümanlarni o'qish so'rovlari avtomat ravishda asil Google Cloud Run serverimizga yo'naltiriladi. Talabalar va oddiy foydalanuvchilar hech qanday kalit kiritishlari shart emas.
                 </p>
               </div>
 
-              <div className="space-y-1.5 pt-2">
-                <label className="text-[10px] font-bold text-[#BABABA] uppercase tracking-wider">Gemini API Key (Kalit):</label>
+              <div className="text-[11px] text-[#BABABA] leading-relaxed space-y-2">
+                <p className="font-semibold text-white">Qo'shimcha sozlash (Dasturchilar va Talabalar uchun):</p>
+                <p>
+                  Agar siz o'zingizning shaxsiy serveringiz yoki to'g'ridan-to'g'ri brauzer orqali Gemini kalitidan foydalanmoqchi bo'lsangiz, quyidagi maydonlarni to'ldirishingiz mumkin:
+                </p>
+              </div>
+
+              {/* CUSTOM SERVER ADDRESS */}
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-bold text-[#BABABA] uppercase tracking-wider">Shaxsiy Server Manzili (Ixtiyoriy):</label>
+                <input
+                  type="text"
+                  placeholder="https://yashil-server-xxxx.run.app"
+                  value={customBackendUrl}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setCustomBackendUrl(val);
+                    if (val && val.trim()) {
+                      try {
+                        safeLocalStorage.setItem("custom_backend_url", val.trim());
+                      } catch(e){}
+                    } else {
+                      try {
+                        safeLocalStorage.removeItem("custom_backend_url");
+                      } catch(e){}
+                    }
+                  }}
+                  className="w-full bg-[#161316] border border-[#453027] focus:border-[#FF6D29] rounded-xl px-4 py-2.5 text-xs text-white placeholder-[#BABABA]/30 outline-none transition-all font-mono"
+                />
+                <p className="text-[9px] text-[#BABABA]/50">Bo'sh qoldirilsa, avtomatik ravishda asil tizim serveriga ulanadi.</p>
+              </div>
+
+              {/* GEMINI API KEY */}
+              <div className="space-y-1.5 pt-1">
+                <label className="text-[10px] font-bold text-[#BABABA] uppercase tracking-wider">Shaxsiy Gemini API Key (Ixtiyoriy):</label>
                 <div className="relative">
                   <input
                     type="password"
@@ -1487,7 +1546,7 @@ ${customInstructions ? `GLOSSARY / ADAPTATION RULES:\nYou MUST apply the followi
                       setApiKeyState(val);
                       if (val) {
                         try {
-                          safeLocalStorage.setItem("user_gemini_api_key", val);
+                          safeLocalStorage.setItem("user_gemini_api_key", val.trim());
                         } catch(e){}
                       } else {
                         try {
@@ -1495,7 +1554,7 @@ ${customInstructions ? `GLOSSARY / ADAPTATION RULES:\nYou MUST apply the followi
                         } catch(e){}
                       }
                     }}
-                    className="w-full bg-[#161316] border border-[#453027] focus:border-[#FF6D29] rounded-xl px-4 py-3 text-xs text-white placeholder-[#BABABA]/30 outline-none transition-all font-mono"
+                    className="w-full bg-[#161316] border border-[#453027] focus:border-[#FF6D29] rounded-xl px-4 py-2.5 text-xs text-white placeholder-[#BABABA]/30 outline-none transition-all font-mono"
                   />
                   {apiKey && (
                     <button
@@ -1512,6 +1571,7 @@ ${customInstructions ? `GLOSSARY / ADAPTATION RULES:\nYou MUST apply the followi
                     </button>
                   )}
                 </div>
+                <p className="text-[9px] text-[#BABABA]/50">O'z shaxsiy Gemini kalitingiz orqali so'rovlarni bevosita ulash.</p>
               </div>
 
               <div className="pt-3 flex justify-end">

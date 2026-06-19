@@ -10,6 +10,17 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
+// Enable CORS so external static hosts (like Netlify) can communicate directly with this Cloud Run backend
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
 // Body parser with 15MB limit to handle larger documents
 app.use(express.json({ limit: "15mb" }));
 app.use(express.urlencoded({ limit: "15mb", extended: true }));
